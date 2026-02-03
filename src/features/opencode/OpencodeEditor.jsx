@@ -115,12 +115,14 @@ const OpencodeEditor = ({ initialConfig, storageKey, onUpload, onChange }) => {
        
        if (!next.provider?.[providerKey]) return next; 
        
-       if (enabled) {
-          const modelMeta = modelsData[providerKey]?.models?.find(m => m.id === modelId);
-          next.provider[providerKey].models[modelId] = {
-             name: modelMeta?.name || modelId, 
-          };
-       } else {
+        if (enabled) {
+           const modelMeta = modelsData[providerKey]?.models?.find(m => m.id === modelId);
+           next.provider[providerKey].models[modelId] = {
+              name: modelMeta?.name || modelId,
+              limit: modelMeta?.limit || { context: 128000, output: 4096 },
+              modalities: modelMeta?.modalities || { input: ["text"], output: ["text"] }
+           };
+        } else {
           delete next.provider[providerKey].models[modelId];
        }
        if (onChange) onChange(next);
@@ -203,9 +205,9 @@ const OpencodeEditor = ({ initialConfig, storageKey, onUpload, onChange }) => {
                />
             </div>
 
-            <div className="flex-[2] min-w-[400px]">
-               <JsonPreview config={localConfig} />
-         </div>
+             <div className="flex-[2] min-w-[400px]">
+                <JsonPreview config={localConfig} />
+          </div>
        </div>
     </div>
   );
