@@ -1,0 +1,78 @@
+/* Prism.js 自定义主题 - 匹配 doom-64 配色 */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #1f1f1f;
+  background: none;
+  font-family: "Source Code Pro", monospace;
+  font-size: 14px;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  tab-size: 2;
+  hyphens: none;
+}
+
+/* 注释 */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+/* 字符串 */
+.token.string {
+  color: #50a14f;
+}
+
+/* 属性名（JSON key） */
+.token.property {
+  color: #b76b01;
+}
+
+/* 关键字 */
+.token.keyword,
+.token.tag {
+  color: #e45649;
+}
+
+/* 数字 */
+.token.number {
+  color: #986801;
+}
+
+/* 布尔值 */
+.token.boolean {
+  color: #e45649;
+}
+
+/* null */
+.token.null {
+  color: #e45649;
+}
+
+/* 标点符号 */
+.token.punctuation {
+  color: #383a42;
+}
+
+/* 操作符 */
+.token.operator {
+  color: #383a42;
+}
+
+/* 括号 */
+.token.bracket,
+.token.brace {
+  color: #383a42;
+}
+
+/* 通用文本 */
+.token.plain {
+  color: #1f1f1f;
+}

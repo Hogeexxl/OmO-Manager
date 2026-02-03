@@ -1,0 +1,31 @@
+{
+  "__comment": "数据来源说明：本列表由 `opencode models` 命令输出及 GitHub 源码分析整理得出。维护策略：定期手动更新，非实时拉取。",
+  "source": "CLI (opencode models) + GitHub (anomalyco/opencode)",
+  "lastUpdated": "2026-02-02",
+  "providers": [
+    "amazon-bedrock",
+    "anthropic",
+    "azure",
+    "google",
+    "google-vertex",
+    "openai",
+    "openai-compatible",
+    "openrouter",
+    "xai",
+    "mistral",
+    "groq",
+    "deepinfra",
+    "cerebras",
+    "cohere",
+    "gateway",
+    "togetherai",
+    "perplexity",
+    "vercel",
+    "gitlab",
+    "github-copilot",
+    "opencode",
+    "moonshotai",
+    "moonshotai-cn",
+    "kimi-for-coding"
+  ]
+}

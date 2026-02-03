@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/opencode/opencode/main/schema.json",
+  "provider": {
+    "openai": {
+      "name": "OpenAI",
+      "apiKey": "sk-xxx",
+      "models": {
+        "gpt-4o": {
+          "name": "GPT-4o",
+          "contextWindow": 128000
+        },
+        "gpt-4o-mini": {
+          "name": "GPT-4o Mini",
+          "contextWindow": 128000
+        }
+      }
+    },
+    "anthropic": {
+      "name": "Anthropic",
+      "apiKey": "sk-ant-xxx",
+      "models": {
+        "claude-3-5-sonnet": {
+          "name": "Claude 3.5 Sonnet",
+          "contextWindow": 200000
+        }
+      }
+    }
+  }
+}

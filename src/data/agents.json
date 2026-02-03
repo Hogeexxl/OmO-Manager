@@ -1,0 +1,101 @@
+[
+  {
+    "id": "sisyphus",
+    "name": "Sisyphus",
+    "defaultModel": "anthropic/claude-opus-4-5",
+    "temperature": 0.1,
+    "mode": "primary",
+    "description": "Primary orchestrator (fallback: kimi-k2.5 → glm-4.7 → gpt-5.2-codex → gemini-3-pro)",
+    "restrictedTools": []
+  },
+  {
+    "id": "atlas",
+    "name": "Atlas",
+    "defaultModel": "anthropic/claude-sonnet-4-5",
+    "temperature": 0.1,
+    "mode": "primary",
+    "description": "Master orchestrator (fallback: kimi-k2.5 → gpt-5.2)",
+    "restrictedTools": []
+  },
+  {
+    "id": "prometheus",
+    "name": "Prometheus",
+    "defaultModel": "anthropic/claude-opus-4-5",
+    "temperature": 0.1,
+    "mode": "primary",
+    "description": "Strategic planning (fallback: kimi-k2.5 → gpt-5.2)",
+    "restrictedTools": []
+  },
+  {
+    "id": "hephaestus",
+    "name": "Hephaestus",
+    "defaultModel": "openai/gpt-5.2-codex",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "Autonomous deep worker, \"The Legitimate Craftsman\" (requires gpt-5.2-codex, no fallback)",
+    "restrictedTools": []
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "defaultModel": "openai/gpt-5.2",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "Consultation, debugging",
+    "restrictedTools": ["write", "edit", "task", "delegate_task"]
+  },
+  {
+    "id": "librarian",
+    "name": "Librarian",
+    "defaultModel": "zai-coding-plan/glm-4.7",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "Docs, GitHub search (fallback: glm-4.7-free)",
+    "restrictedTools": ["write", "edit", "task", "delegate_task", "call_omo_agent"]
+  },
+  {
+    "id": "explore",
+    "name": "Explore",
+    "defaultModel": "anthropic/claude-haiku-4-5",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "Fast contextual grep (fallback: gpt-5-mini → gpt-5-nano)",
+    "restrictedTools": ["write", "edit", "task", "delegate_task", "call_omo_agent"]
+  },
+  {
+    "id": "multimodal-looker",
+    "name": "Multimodal-Looker",
+    "defaultModel": "google/gemini-3-flash",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "PDF/image analysis",
+    "restrictedTools": ["Allowlist: read only"]
+  },
+  {
+    "id": "metis",
+    "name": "Metis",
+    "defaultModel": "anthropic/claude-opus-4-5",
+    "temperature": 0.3,
+    "mode": "subagent",
+    "description": "Pre-planning analysis (fallback: kimi-k2.5 → gpt-5.2)",
+    "restrictedTools": []
+  },
+  {
+    "id": "momus",
+    "name": "Momus",
+    "defaultModel": "openai/gpt-5.2",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "Plan validation (fallback: claude-opus-4-5)",
+    "restrictedTools": []
+  },
+  {
+    "id": "sisyphus-junior",
+    "name": "Sisyphus-Junior",
+    "defaultModel": "anthropic/claude-sonnet-4-5",
+    "temperature": 0.1,
+    "mode": "subagent",
+    "description": "Category-spawned executor",
+    "restrictedTools": ["task", "delegate_task"]
+  }
+]
