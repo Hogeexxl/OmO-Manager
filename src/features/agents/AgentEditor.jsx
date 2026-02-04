@@ -1,6 +1,6 @@
 /**
  * [INPUT]: 依赖 opencodeConfig 与上传/变更回调，接收 initialConfig 与 storageKey
- * [OUTPUT]: 对外提供 AgentEditor 组件（编辑/预览/空状态上传）
+ * [OUTPUT]: 对外提供 AgentEditor 组件（编辑/预览/空状态上传，模型按发布日期排序）
  * [POS]: features/agents 的主编辑视图
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
@@ -26,6 +26,27 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [comments, setComments] = useState(initialComments || { agents: {}, categories: {} });
   const fileInputRef = useRef(null);
+
+  const normalizeReleaseDate = (value) => {
+    if (!value || value === '1970-01-01') return '1970-01-01';
+    if (/^\d{4}$/.test(value)) return `${value}-01-01`;
+    if (/^\d{4}-\d{2}$/.test(value)) return `${value}-01`;
+    return value;
+  };
+
+  const toReleaseTimestamp = (value) => {
+    const normalized = normalizeReleaseDate(value);
+    const timestamp = Date.parse(normalized);
+    return Number.isNaN(timestamp) ? 0 : timestamp;
+  };
+
+  const releaseDateByKey = React.useMemo(() => {
+    const map = new Map();
+    modelsInfoData.forEach((model) => {
+      map.set(`${model.providerId}/${model.id}`, model.release_date);
+    });
+    return map;
+  }, []);
 
   // 监听 initialConfig 变化，自动选中第一个 agent 或 category
   useEffect(() => {
@@ -69,7 +90,8 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
             models.push({
               id: `${providerKey}/${modelId}`,
               name: model.name || modelId,
-              provider: provider.name || providerKey
+              provider: provider.name || providerKey,
+              releaseDate: releaseDateByKey.get(`${providerKey}/${modelId}`)
             });
           });
         });
@@ -89,16 +111,24 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
           models.push({
             id: modelId,
             name: model.name || model.id,
-            provider: 'opencode'
+            provider: 'opencode',
+            releaseDate: model.release_date
           });
         }
       });
     } catch (err) {
       console.error("Error adding default opencode models:", err);
     }
-    
-    return models;
-  }, [opencodeConfig]);
+
+    return models.sort((a, b) => {
+      const aTimestamp = toReleaseTimestamp(a.releaseDate);
+      const bTimestamp = toReleaseTimestamp(b.releaseDate);
+      if (aTimestamp !== bTimestamp) {
+        return bTimestamp - aTimestamp;
+      }
+      return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+    });
+  }, [opencodeConfig, releaseDateByKey]);
 
   // --- Handlers ---
 
