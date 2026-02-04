@@ -14,7 +14,7 @@
     --font-sans: "Oxanium", sans-serif;
     --font-mono: "Source Code Pro", monospace;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --radius: 0px;
+    --radius: 0.375rem;
     --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
     --tracking-tight: calc(var(--tracking-normal) - 0.025em);
     --tracking-wide: calc(var(--tracking-normal) + 0.025em);
@@ -103,7 +103,7 @@
     --chart-3: oklch(0.5880 0.0993 245.7394);
     --chart-4: oklch(0.7076 0.1975 46.4558);
     --chart-5: oklch(0.5656 0.0431 40.4319);
-    --radius: 0px;
+    --radius: 0.375rem;
     --sidebar: #b0b0b0;
     --sidebar-foreground: #1f1f1f;
     --sidebar-primary: #556b2f;
@@ -159,7 +159,7 @@
     --chart-3: oklch(0.7482 0.1235 244.7492);
     --chart-4: oklch(0.7839 0.1719 68.0943);
     --chart-5: oklch(0.6471 0.0334 40.7963);
-    --radius: 0px;
+    --radius: 0.375rem;
     --sidebar: oklch(0.1913 0 0);
     --sidebar-foreground: oklch(0.9067 0 0);
     --sidebar-primary: oklch(0.50 0.10 110);

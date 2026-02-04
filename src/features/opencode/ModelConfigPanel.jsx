@@ -59,7 +59,7 @@ const ModelConfigPanel = ({ providerKey, providerMeta, config, onToggleModel, on
                 const isModelEnabled = !!config.provider?.[providerKey]?.models?.[model.id];
                 
                 return (
-                   <div key={model.id} className="flex items-center justify-between p-4 rounded-xl border bg-card hover:shadow-sm transition-shadow">
+                   <div key={model.id} className="flex items-center justify-between p-4 rounded-md border bg-card hover:shadow-sm transition-shadow">
                       <div className="flex-1 min-w-0 mr-4">
                          <div className="flex items-center gap-2 mb-1">
                             <h4 className="font-medium truncate text-sm">{model.name}</h4>

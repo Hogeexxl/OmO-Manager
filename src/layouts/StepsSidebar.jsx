@@ -79,9 +79,9 @@ const StepsSidebar = ({
                title={t('steps.step1Title')}
             >
                 <div className="flex items-center justify-between mb-3">
-                  <Button variant="ghost" size="sm" className="text-xs" onClick={onAddOpencodeTemplate}>{t('common.addTemplate')}</Button>
+                  <Button variant="ghost" size="sm" className="text-sm" onClick={onAddOpencodeTemplate}>{t('common.addTemplate')}</Button>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm" className="text-xs" onClick={() => handleUploadClick('upload-opencode')}>{t('common.upload')}</Button>
+                    <Button variant="ghost" size="sm" className="text-sm" onClick={() => handleUploadClick('upload-opencode')}>{t('common.upload')}</Button>
                     <input
                       id="upload-opencode"
                       type="file"
@@ -149,9 +149,9 @@ const StepsSidebar = ({
                titleClassName="pt-3"
             >
                 <div className="flex items-center justify-between mb-3">
-                  <Button variant="ghost" size="sm" className="text-xs" onClick={onAddAgentTemplate}>{t('common.addTemplate')}</Button>
+                  <Button variant="ghost" size="sm" className="text-sm" onClick={onAddAgentTemplate}>{t('common.addTemplate')}</Button>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm" className="text-xs" onClick={() => handleUploadClick('upload-agents')}>{t('common.upload')}</Button>
+                    <Button variant="ghost" size="sm" className="text-sm" onClick={() => handleUploadClick('upload-agents')}>{t('common.upload')}</Button>
                     <input
                       id="upload-agents"
                       type="file"
