@@ -12,6 +12,7 @@ import CategoryConfigPanel from './CategoryConfigPanel';
 import JsonPreview from '../opencode/JsonPreview';
 import agentsData from '@/data/agents.json';
 import categoriesData from '@/data/categories.json';
+import modelsInfoData from '@/data/models_info.json';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Download, RotateCcw, FileJson } from 'lucide-react';
@@ -53,27 +54,50 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
   }, [initialConfig, initialComments, selectedAgentId, selectedCategoryId]);
 
 
-  // 从 opencodeConfig 提取所有可用模型
+  // 从 opencodeConfig 提取所有可用模型，并默认添加 provider 为 opencode 的模型
   const allModels = React.useMemo(() => {
-    if (!opencodeConfig?.provider) return [];
+    const models = [];
     
+    // 1. 从 opencodeConfig 提取已配置的模型
+    if (opencodeConfig?.provider) {
+      try {
+        Object.entries(opencodeConfig.provider).forEach(([providerKey, provider]) => {
+          if (!provider || !provider.models) return;
+          
+          Object.entries(provider.models).forEach(([modelId, model]) => {
+            if (!model) return;
+            models.push({
+              id: `${providerKey}/${modelId}`,
+              name: model.name || modelId,
+              provider: provider.name || providerKey
+            });
+          });
+        });
+      } catch (err) {
+        console.error("Error parsing models from opencodeConfig:", err);
+      }
+    }
+    
+    // 2. 默认添加 providerId 为 opencode 的模型（无论 opencode.json 是否配置）
     try {
-      return Object.entries(opencodeConfig.provider).flatMap(([providerKey, provider]) => {
-        if (!provider || !provider.models) return [];
-        
-        return Object.entries(provider.models).map(([modelId, model]) => {
-          if (!model) return null;
-          return {
-            id: `${providerKey}/${modelId}`,
-            name: model.name || modelId,
-            provider: provider.name || providerKey
-          };
-        }).filter(Boolean); // Filter out nulls
+      const opencodeModels = modelsInfoData.filter(model => model.providerId === 'opencode');
+      opencodeModels.forEach(model => {
+        // 检查是否已存在（避免重复）
+        const modelId = `opencode/${model.id}`;
+        const exists = models.some(m => m.id === modelId);
+        if (!exists) {
+          models.push({
+            id: modelId,
+            name: model.name || model.id,
+            provider: 'opencode'
+          });
+        }
       });
     } catch (err) {
-      console.error("Error parsing models:", err);
-      return [];
+      console.error("Error adding default opencode models:", err);
     }
+    
+    return models;
   }, [opencodeConfig]);
 
   // --- Handlers ---
