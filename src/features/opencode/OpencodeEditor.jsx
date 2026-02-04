@@ -5,6 +5,7 @@
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProviderSidebar from './ProviderSidebar';
 import ModelConfigPanel from './ModelConfigPanel';
 import JsonPreview from './JsonPreview';
@@ -13,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Download, RotateCcw, FileJson } from 'lucide-react';
 
 const OpencodeEditor = ({ initialConfig, storageKey, onUpload, onChange }) => {
+  const { t } = useTranslation();
   // State - 初始为 null 表示未上传文件
   const [localConfig, setLocalConfig] = useState(initialConfig);
   
@@ -148,13 +150,13 @@ const OpencodeEditor = ({ initialConfig, storageKey, onUpload, onChange }) => {
         <div className="flex-1 flex items-center justify-center bg-background">
           <div className="text-center space-y-4">
             <FileJson className="h-16 w-16 text-muted-foreground mx-auto" />
-            <p className="text-muted-foreground text-sm">请上传 opencode.json 文件</p>
+            <p className="text-muted-foreground text-sm">{t('opencode.emptyState')}</p>
             <Button
               type="button"
               onClick={() => fileInputRef.current?.click()}
               className="h-11 px-10 bg-sidebar-primary text-sidebar-primary-foreground shadow hover:bg-sidebar-primary/90"
             >
-              点击上传
+              {t('common.clickToUpload')}
             </Button>
           </div>
         </div>
@@ -175,11 +177,11 @@ const OpencodeEditor = ({ initialConfig, storageKey, onUpload, onChange }) => {
             />
            <Button variant="ghost" onClick={handleReset} className="text-sm font-medium gap-2">
               <RotateCcw className="h-4 w-4" />
-              <span>重置</span>
+              <span>{t('common.reset')}</span>
            </Button>
            <Button variant="ghost" onClick={handleDownload} className="text-sm font-medium gap-2">
               <Download className="h-4 w-4" />
-              <span>下载</span>
+              <span>{t('common.download')}</span>
            </Button>
 
        </div>

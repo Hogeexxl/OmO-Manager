@@ -5,6 +5,7 @@
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import AgentListSidebar from './AgentListSidebar';
 import AgentConfigPanel from './AgentConfigPanel';
 import CategoryConfigPanel from './CategoryConfigPanel';
@@ -16,6 +17,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Download, RotateCcw, FileJson } from 'lucide-react';
 
 const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onChange, initialComments, onCommentsChange }) => {
+  const { t } = useTranslation();
   // State - 所有 useState 必须在 useEffect 之前
   const [localConfig, setLocalConfig] = useState(initialConfig);
   const [activeTab, setActiveTab] = useState("agents");
@@ -206,14 +208,14 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
           <div className="text-center space-y-4">
             <FileJson className="h-16 w-16 text-muted-foreground mx-auto" />
             <p className="text-muted-foreground text-sm">
-              {opencodeConfig ? '请上传 oh-my-opencode.json 文件' : '请先在第一步上传 opencode.json'}
+              {opencodeConfig ? t('agents.emptyStateCategory') : t('agents.emptyStateOpencodeMissing')}
             </p>
             <Button
               type="button"
               onClick={() => fileInputRef.current?.click()}
               className="h-11 px-10 bg-sidebar-primary text-sidebar-primary-foreground shadow hover:bg-sidebar-primary/90"
             >
-              点击上传
+              {t('common.clickToUpload')}
             </Button>
           </div>
         </div>
@@ -256,11 +258,11 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
             />
              <Button variant="ghost" onClick={handleReset} className="text-sm font-medium gap-2">
                 <RotateCcw className="h-4 w-4" />
-                <span>重置</span>
+                <span>{t('common.reset')}</span>
              </Button>
              <Button variant="ghost" onClick={handleDownload} className="text-sm font-medium gap-2">
                 <Download className="h-4 w-4" />
-                <span>下载</span>
+                <span>{t('common.download')}</span>
              </Button>
          </div>
       </div>
@@ -299,7 +301,7 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
                   />
                ) : (
                  <div className="flex h-full flex-col items-center justify-center text-muted-foreground">
-                   <p className="mb-2">Select an Agent to configure</p>
+                   <p className="mb-2">{t('agents.selectAgent')}</p>
                  </div>
                )
             ) : (
@@ -320,7 +322,7 @@ const AgentEditor = ({ initialConfig, opencodeConfig, storageKey, onUpload, onCh
                   />
                ) : (
                  <div className="flex h-full flex-col items-center justify-center text-muted-foreground">
-                   <p className="mb-2">Select a Category to configure</p>
+                   <p className="mb-2">{t('agents.selectCategory')}</p>
                  </div>
                )
             )}

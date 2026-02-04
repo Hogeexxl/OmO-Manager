@@ -13,9 +13,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Switch } from "@/components/ui/switch";
 import modelsData from '@/data/models.json';
 import ModelSelector from './ModelSelector';
-import { agentsInfo } from '@/data/agentsInfo';
+import { useTranslation } from 'react-i18next';
 
 const AgentConfigPanel = ({ agentId, agentMeta, config, allModels, onUpdate, comment, onCommentChange }) => {
+  const { t } = useTranslation();
   const currentConfig = config.agents?.[agentId] || {};
 
   const model = currentConfig.model !== undefined ? currentConfig.model : (agentMeta?.defaultModel || "");
@@ -23,9 +24,9 @@ const AgentConfigPanel = ({ agentId, agentMeta, config, allModels, onUpdate, com
   const mode = currentConfig.mode !== undefined ? currentConfig.mode : (agentMeta?.mode || "subagent");
   const description = currentConfig.description !== undefined ? currentConfig.description : (agentMeta?.description || "");
 
-  const info = agentsInfo[agentId];
-  const responsibility = info?.responsibility || agentMeta?.description || "";
-  const fallbackChain = info?.fallbackChain || "";
+  
+  const responsibility = t(`agentsInfo.${agentId}.responsibility`, { defaultValue: agentMeta?.description || "" });
+  const fallbackChain = t(`agentsInfo.${agentId}.fallbackChain`, { defaultValue: "" });
 
   const [commentEnabled, setCommentEnabled] = useState(false);
   const [localComment, setLocalComment] = useState("");
@@ -74,7 +75,7 @@ const AgentConfigPanel = ({ agentId, agentMeta, config, allModels, onUpdate, com
                     onChange={(val) => handleChange('model', val)}
                  />
                   <p className="text-xs tracking-wide text-muted-foreground">
-                    fallback：{fallbackChain}
+                    {t('agents.config.fallback')} {fallbackChain}
                   </p>
               </div>
 
@@ -91,7 +92,7 @@ const AgentConfigPanel = ({ agentId, agentMeta, config, allModels, onUpdate, com
                     onValueChange={(val) => handleChange('temperature', val[0])}
                     className="[\u0026_.range-thumb]:border-primary"
                  />
-                 <p className="text-xs tracking-wide text-muted-foreground">Controls randomness: 0.0 is deterministic, 1.0 is creative.</p>
+                  <p className="text-xs tracking-wide text-muted-foreground">{t('agents.config.temperatureDesc')}</p>
               </div>
 
               <div className="space-y-3">
@@ -115,9 +116,9 @@ const AgentConfigPanel = ({ agentId, agentMeta, config, allModels, onUpdate, com
                     className="min-h-[150px] font-mono text-sm bg-card border-border resize-none p-4"
                     placeholder="Enter agent description or prompt..."
                  />
-                 <p className="text-xs text-muted-foreground">
-                    使用 delegate_task 工具委派任务时，系统会把这个 description 注入到 Prompt 中。这有助于让被调用的 Agent（Sisyphus-Junior）更好地理解自己的角色和任务目标。
-                 </p>
+                  <p className="text-xs text-muted-foreground">
+                     {t('agents.config.descriptionHelp')}
+                  </p>
               </div>
 
               <div className="space-y-3">

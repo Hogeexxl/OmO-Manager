@@ -1,0 +1,143 @@
+{
+  "app": {
+    "name": "OmO Manager"
+  },
+  "common": {
+    "upload": "Upload File",
+    "clickToUpload": "Click to Upload",
+    "reset": "Reset",
+    "download": "Download",
+    "addTemplate": "Add Template",
+    "noFiles": "No files",
+    "search": "Search...",
+    "noResults": "No results found",
+    "on": "On",
+    "off": "Off",
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  },
+  "steps": {
+    "step1Title": "Step 1: Edit opencode.json",
+    "step2Title": "Step 2: Edit oh-my-opencode.json",
+    "instruction1": "1. Upload your opencode.json file to configure providers and models.",
+    "instruction2": "2. Upload your oh-my-opencode.json to set models for agents and categories.",
+    "instruction3": "3. Save opencode.json and oh-my-opencode.json to your opencode directory."
+  },
+  "opencode": {
+    "emptyState": "Please upload opencode.json file",
+    "providerTitle": "Provider",
+    "allProviders": "All Providers",
+    "activeProviders": "Active Only",
+    "searchProviders": "Search providers...",
+    "noProviders": "No providers found",
+    "modelTitle": "Model Configuration",
+    "searchModels": "Search models...",
+    "noModels": "No models found matching",
+    "contextLimit": "Context",
+    "inputModalities": "Input"
+  },
+  "agents": {
+    "emptyStateOpencodeMissing": "Please upload opencode.json in Step 1 first",
+    "emptyStateCategory": "Please upload oh-my-opencode.json file",
+    "tabAgents": "Agents",
+    "tabCategories": "Categories",
+    "selectAgent": "Select an Agent to configure",
+    "selectCategory": "Select a Category to configure",
+    "searchAgents": "Search Agents...",
+    "searchCategories": "Search Categories...",
+    "config": {
+      "model": "Model",
+      "fallback": "Fallback:",
+      "temperature": "Temperature",
+      "temperatureDesc": "Controls randomness: 0.0 is deterministic, 1.0 is creative.",
+      "mode": "Mode",
+      "modePrimary": "Primary",
+      "modeSubagent": "Subagent",
+      "description": "Description / Prompt",
+      "descriptionHint": "Enter agent description or prompt...",
+      "descriptionHelp": "When delegating tasks using the delegate_task tool, the system injects this description into the Prompt. This helps the called Agent (Sisyphus-Junior) better understand its role and task goals.",
+      "comment": "Comment",
+      "commentHint": "Enter comment..."
+    }
+  },
+  "agentsInfo": {
+    "sisyphus": {
+      "responsibility": "Primary Orchestrator. Responsible for overall task decomposition and scheduling.",
+      "fallbackChain": "claude-opus-4-5 (max) → k2p5 → kimi-k2.5-free → glm-4.7 → glm-4.7-free"
+    },
+    "atlas": {
+      "responsibility": "Master Orchestrator. Holds Todo List, manages long tasks.",
+      "fallbackChain": "k2p5 → kimi-k2.5-free → claude-sonnet-4-5 → gpt-5.2 → gemini-3-pro"
+    },
+    "prometheus": {
+      "responsibility": "Strategic Planning. Responsible for top-level design and scheme planning.",
+      "fallbackChain": "claude-opus-4-5 (max) → k2p5 → kimi-k2.5-free → gpt-5.2 (high) → gemini-3-pro"
+    },
+    "hephaestus": {
+      "responsibility": "Deep Worker. Specialized in complex coding.",
+      "fallbackChain": "No fallback"
+    },
+    "oracle": {
+      "responsibility": "Consultation. Used for advice, Code Review, and debugging.",
+      "fallbackChain": "gpt-5.2 (high) → gemini-3-pro (max) → claude-opus-4-5 (max)"
+    },
+    "librarian": {
+      "responsibility": "Librarian. Responsible for document retrieval and GitHub search.",
+      "fallbackChain": "glm-4.7 → glm-4.7-free → claude-sonnet-4-5"
+    },
+    "explore": {
+      "responsibility": "Fast Contextual Grep. Quick codebase search.",
+      "fallbackChain": "grok-code-fast-1 → claude-haiku-4-5 → gpt-5-nano"
+    },
+    "multimodal-looker": {
+      "responsibility": "Multimodal Analyzer. Handles PDF, images.",
+      "fallbackChain": "gemini-3-flash → gpt-5.2 → glm-4.6v → k2p5 → kimi-k2.5-free → claude-haiku-4-5 → gpt-5-nano"
+    },
+    "metis": {
+      "responsibility": "Pre-planning Analysis.",
+      "fallbackChain": "claude-opus-4-5 (max) → k2p5 → kimi-k2.5-free → gpt-5.2 (high) → gemini-3-pro"
+    },
+    "momus": {
+      "responsibility": "Plan Reviewer.",
+      "fallbackChain": "gpt-5.2 (medium) → claude-opus-4-5 (max) → gemini-3-pro (max)"
+    },
+    "sisyphus-junior": {
+      "responsibility": "Delegate Executor. Usually determined by Category, no independent fixed fallback chain.",
+      "fallbackChain": "Usually determined by Category"
+    }
+  },
+  "categoriesInfo": {
+    "visual-engineering": {
+      "responsibility": "Frontend/Visual. UI/UX, CSS, Animation.",
+      "fallbackChain": "gemini-3-pro → claude-opus-4-5 (max) → glm-4.7"
+    },
+    "ultrabrain": {
+      "responsibility": "Deep Logic. Complex architecture, algorithms.",
+      "fallbackChain": "gpt-5.2-codex (xhigh) → gemini-3-pro (max) → claude-opus-4-5 (max)"
+    },
+    "deep": {
+      "responsibility": "Deep Development. Deep code implementation.",
+      "fallbackChain": "gpt-5.2-codex (medium) → claude-opus-4-5 (max) → gemini-3-pro (max)"
+    },
+    "artistry": {
+      "responsibility": "Creative/Artistry. High creativity tasks.",
+      "fallbackChain": "gemini-3-pro (max) → claude-opus-4-5 (max) → gpt-5.2"
+    },
+    "quick": {
+      "responsibility": "Quick/Trivial. Single file modification, bug fixes.",
+      "fallbackChain": "claude-haiku-4-5 → gemini-3-flash → gpt-5-nano"
+    },
+    "unspecified-low": {
+      "responsibility": "Low difficulty misc.",
+      "fallbackChain": "claude-sonnet-4-5 → gpt-5.2-codex (medium) → gemini-3-flash"
+    },
+    "unspecified-high": {
+      "responsibility": "High difficulty misc.",
+      "fallbackChain": "claude-opus-4-5 (max) → gpt-5.2 (high) → gemini-3-pro"
+    },
+    "writing": {
+      "responsibility": "Writing/Copywriting.",
+      "fallbackChain": "gemini-3-flash → claude-sonnet-4-5 → glm-4.7 → gpt-5.2"
+    }
+  }
+}

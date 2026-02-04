@@ -3,15 +3,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import ModelSelector from './ModelSelector';
-import { categoriesInfo } from '@/data/agentsInfo';
+import { useTranslation } from 'react-i18next';
 
 const CategoryConfigPanel = ({ categoryId, config, allModels, onUpdate, comment, onCommentChange }) => {
+  const { t } = useTranslation();
   const catConfig = config?.categories?.[categoryId] || {};
   const model = catConfig.model || "";
 
-  const info = categoriesInfo[categoryId];
-  const responsibility = info?.responsibility || "";
-  const fallbackChain = info?.fallbackChain || "";
+  const responsibility = t(`categoriesInfo.${categoryId}.responsibility`, { defaultValue: "" });
+  const fallbackChain = t(`categoriesInfo.${categoryId}.fallbackChain`, { defaultValue: "" });
 
   const [commentEnabled, setCommentEnabled] = useState(false);
   const [localComment, setLocalComment] = useState("");
@@ -48,7 +48,7 @@ const CategoryConfigPanel = ({ categoryId, config, allModels, onUpdate, comment,
           {categoryId.replace(/-/g, ' ')}
         </h2>
         <p className="text-muted-foreground text-sm mt-1">
-          {responsibility || "Configure default model for this category."}
+          {responsibility || t('agents.selectCategory')}
         </p>
       </div>
 
@@ -62,7 +62,7 @@ const CategoryConfigPanel = ({ categoryId, config, allModels, onUpdate, comment,
               onChange={(val) => handleUpdate('model', val)}
             />
             <p className="text-xs text-muted-foreground">
-              fallback：{fallbackChain}
+              {t('agents.config.fallback')} {fallbackChain}
             </p>
           </div>
 

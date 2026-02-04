@@ -5,6 +5,7 @@
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
@@ -45,6 +46,7 @@ const StepsSidebar = ({
   onAddOpencodeTemplate,
   onAddAgentTemplate
 }) => {
+  const { t } = useTranslation();
   
   // Helper for hidden file input
   const handleUploadClick = (inputId) => {
@@ -65,21 +67,21 @@ const StepsSidebar = ({
     <div className="flex flex-col h-full bg-transparent p-0">
        {/* Instruction Card */}
        <div className="mb-8 p-6 rounded-2xl bg-card border border-sidebar-border shadow text-sm tracking-normal font-medium text-card-foreground space-y-4">
-          <p>1.上传你的opencode.json文件，配置提供商和模型</p>
-          <p>2.上传你的oh-my-opencode.json，设置agents和categories使用的模型</p>
-           <p>3.保存opencode.json和oh-my-opencode.json到你的opencode目录</p>
+          <p>{t('steps.instruction1')}</p>
+          <p>{t('steps.instruction2')}</p>
+           <p>{t('steps.instruction3')}</p>
        </div>
 
        <div className="space-y-1">
           
            {/* Step 1: Opencode Editor */}
             <StepCard
-               title="step1：编辑 opencode.json"
+               title={t('steps.step1Title')}
             >
                 <div className="flex items-center justify-between mb-3">
-                  <Button variant="ghost" size="sm" className="text-xs" onClick={onAddOpencodeTemplate}>添加模板</Button>
+                  <Button variant="ghost" size="sm" className="text-xs" onClick={onAddOpencodeTemplate}>{t('common.addTemplate')}</Button>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm" className="text-xs" onClick={() => handleUploadClick('upload-opencode')}>上传文件</Button>
+                    <Button variant="ghost" size="sm" className="text-xs" onClick={() => handleUploadClick('upload-opencode')}>{t('common.upload')}</Button>
                     <input
                       id="upload-opencode"
                       type="file"
@@ -137,19 +139,19 @@ const StepsSidebar = ({
                     ))}
                   </div>
                 ) : (
-                  <div className="text-xs text-muted-foreground px-1 text-center">暂无文件</div>
+                  <div className="text-xs text-muted-foreground px-1 text-center">{t('common.noFiles')}</div>
                )}
             </StepCard>
 
            {/* Step 2: Agent Editor */}
             <StepCard
-               title="step2：编辑 oh-my-opencode.json"
+               title={t('steps.step2Title')}
                titleClassName="pt-3"
             >
                 <div className="flex items-center justify-between mb-3">
-                  <Button variant="ghost" size="sm" className="text-xs" onClick={onAddAgentTemplate}>添加模板</Button>
+                  <Button variant="ghost" size="sm" className="text-xs" onClick={onAddAgentTemplate}>{t('common.addTemplate')}</Button>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm" className="text-xs" onClick={() => handleUploadClick('upload-agents')}>上传文件</Button>
+                    <Button variant="ghost" size="sm" className="text-xs" onClick={() => handleUploadClick('upload-agents')}>{t('common.upload')}</Button>
                     <input
                       id="upload-agents"
                       type="file"
@@ -207,7 +209,7 @@ const StepsSidebar = ({
                     ))}
                   </div>
                 ) : (
-                  <div className="text-xs text-muted-foreground px-1 text-center">暂无文件</div>
+                  <div className="text-xs text-muted-foreground px-1 text-center">{t('common.noFiles')}</div>
                )}
             </StepCard>
 
