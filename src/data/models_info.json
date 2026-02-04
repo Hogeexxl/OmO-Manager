@@ -74488,5 +74488,135 @@
     "knowledge": "",
     "release_date": "2025-08-05",
     "last_updated": "2025-08-05"
+  },
+  {
+    "id": "antigravity-gemini-3-pro",
+    "providerId": "google",
+    "name": "Gemini 3 Pro (Antigravity)",
+    "family": "gemini-pro",
+    "attachment": true,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "temperature": true,
+    "modalities": {
+      "input": ["text", "image", "pdf"],
+      "output": ["text"]
+    },
+    "cost": {
+      "input": 0,
+      "output": 0
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 65535
+    },
+    "knowledge": "2025-01",
+    "release_date": "2025-01-01",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "antigravity-gemini-3-flash",
+    "providerId": "google",
+    "name": "Gemini 3 Flash (Antigravity)",
+    "family": "gemini-flash",
+    "attachment": true,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "temperature": true,
+    "modalities": {
+      "input": ["text", "image", "pdf"],
+      "output": ["text"]
+    },
+    "cost": {
+      "input": 0,
+      "output": 0
+    },
+    "limit": {
+      "context": 1048576,
+      "output": 65536
+    },
+    "knowledge": "2025-01",
+    "release_date": "2025-01-01",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "antigravity-claude-sonnet-4-5",
+    "providerId": "google",
+    "name": "Claude Sonnet 4.5 (Antigravity)",
+    "family": "claude",
+    "attachment": true,
+    "reasoning": false,
+    "tool_call": true,
+    "structured_output": true,
+    "temperature": true,
+    "modalities": {
+      "input": ["text", "image", "pdf"],
+      "output": ["text"]
+    },
+    "cost": {
+      "input": 0,
+      "output": 0
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "knowledge": "2025-01",
+    "release_date": "2025-01-01",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "antigravity-claude-sonnet-4-5-thinking",
+    "providerId": "google",
+    "name": "Claude Sonnet 4.5 Thinking (Antigravity)",
+    "family": "claude",
+    "attachment": true,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "temperature": true,
+    "modalities": {
+      "input": ["text", "image", "pdf"],
+      "output": ["text"]
+    },
+    "cost": {
+      "input": 0,
+      "output": 0
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "knowledge": "2025-01",
+    "release_date": "2025-01-01",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "antigravity-claude-opus-4-5-thinking",
+    "providerId": "google",
+    "name": "Claude Opus 4.5 Thinking (Antigravity)",
+    "family": "claude",
+    "attachment": true,
+    "reasoning": true,
+    "tool_call": true,
+    "structured_output": true,
+    "temperature": true,
+    "modalities": {
+      "input": ["text", "image", "pdf"],
+      "output": ["text"]
+    },
+    "cost": {
+      "input": 0,
+      "output": 0
+    },
+    "limit": {
+      "context": 200000,
+      "output": 64000
+    },
+    "knowledge": "2025-01",
+    "release_date": "2025-01-01",
+    "last_updated": "2025-01-01"
   }
 ]
