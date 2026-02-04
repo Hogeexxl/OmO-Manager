@@ -15,15 +15,8 @@ const ModelConfigPanel = ({ providerKey, providerMeta, config, onToggleModel, on
    const models = (providerMeta?.models || [])
     .filter(m => m.name.toLowerCase().includes(search.toLowerCase()) || m.id.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
-      const aEnabled = !!config.provider?.[providerKey]?.models?.[a.id];
-      const bEnabled = !!config.provider?.[providerKey]?.models?.[b.id];
-      
-      // 开启状态的排在前面
-      if (aEnabled && !bEnabled) return -1;
-      if (!aEnabled && bEnabled) return 1;
-      
-      // 相同状态下按字母顺序正序排列（A-Z）
-      return a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+      // 按字母倒序排列（Z-A）
+      return b.name.localeCompare(a.name, 'en', { sensitivity: 'base' });
     });
 
   return (

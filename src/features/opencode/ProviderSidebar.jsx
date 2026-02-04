@@ -39,17 +39,9 @@ const ProviderSidebar = ({ modelsData, config, selectedKey, onSelect }) => {
   const performSort = () => {
     const keys = [...baseProvidersRef.current.map(p => p.key)];
 
-    // 根据当前 config 排序：先按开启状态，再按字母顺序
+    // 根据当前 config 排序：按字母倒序排列（Z-A）
     keys.sort((a, b) => {
-      const aEnabled = !!config?.provider?.[a];
-      const bEnabled = !!config?.provider?.[b];
-
-      // 开启状态的排在前面
-      if (aEnabled && !bEnabled) return -1;
-      if (!aEnabled && bEnabled) return 1;
-
-      // 相同状态下按字母顺序正序排列（A-Z）
-      return a.localeCompare(b, 'en', { sensitivity: 'base' });
+      return b.localeCompare(a, 'en', { sensitivity: 'base' });
     });
 
     setSortedKeys(keys);
